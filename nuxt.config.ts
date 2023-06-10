@@ -10,7 +10,7 @@ export default defineNuxtConfig({
     transpile: ["vuetify"],
   },
   app: {
-    baseURL: "/tef-photobooth.github.io/", // baseURL: '/<repository>/'
+    baseURL: "/", // baseURL: '/<repository>/'
   },
   vite: {
     ssr: {
