@@ -30,4 +30,4 @@ jobs:
 
     - name: Deploy 🚀
       run: 
-        npm run dev
+        node .output/server/index.mjs
