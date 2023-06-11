@@ -78,7 +78,7 @@ const { smAndDown, mdAndUp, mdAndDown } = useDisplay();
 let phoneView = smAndDown;
 let tabletView = mdAndDown;
 let largeView = mdAndUp;
-const showContent = tabletView ? ref(false) : ref(true); // Initial visibility state
+const showContent = largeView.value ? ref(true) : ref(false); // Initial visibility state
 
 const toggleContent = () => {
   showContent.value = !showContent.value; // Toggle visibility
