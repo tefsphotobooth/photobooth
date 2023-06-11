@@ -12,6 +12,7 @@ export default defineNuxtConfig({
   app: {
     baseURL: "/tefs-photobooth/", // baseURL: '/<repository>/'
   },
+  
   vite: {
     ssr: {
       noExternal: ["vuetify"],
