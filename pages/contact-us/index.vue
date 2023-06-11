@@ -1,5 +1,23 @@
 <template>
   <v-card class="mx-auto" max-width="80%">
+    <v-card-actions>
+      <v-card-text class="text-left">
+        <h3>
+          Contact No: <span style="text-wrap: nowrap">0916 646 0805</span>
+        </h3>
+      </v-card-text>
+
+      <nuxt-link
+        class="text-center"
+        to="https://www.facebook.com/profile.php?id=100064645585978"
+      >
+        <v-btn color="blue"> Facebook Page </v-btn>
+      </nuxt-link>
+
+      <v-card-text class="text-right">
+        <h3 style="color: black">Bagumbayan, Sta. Cruz, Laguna</h3>
+      </v-card-text>
+    </v-card-actions>
     <v-img class="align-end text-white" :src="photoBoothImage" cover> </v-img>
 
     <div class="text-center">
@@ -59,7 +77,6 @@
         <v-btn @click="handleReset"> clear </v-btn>
       </div>
     </form>
-
     <v-card-actions>
       <v-card-text class="text-left">
         <h3>
@@ -75,7 +92,7 @@
       </nuxt-link>
 
       <v-card-text class="text-right">
-        <h3>Bagumbayan, Sta. Cruz, Laguna</h3>
+        <h3 style="color: black">Bagumbayan, Sta. Cruz, Laguna</h3>
       </v-card-text>
     </v-card-actions>
   </v-card>
@@ -168,4 +185,25 @@ let sendEmail = async () => {
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+h3 {
+  color: #1a93f1;
+  // text-transform: uppercase;
+  @media (max-width: "960px") {
+    font-size: 11px;
+  }
+  @media (max-width: "600px") {
+    font-size: 10px;
+  }
+}
+.v-card-actions {
+  @media (max-width: "600px") {
+    font-size: 10px;
+    flex-direction: column !important;
+    text-align: center !important;
+    .v-card-text{
+      padding: 1px;
+    }
+  }
+}
+</style>
