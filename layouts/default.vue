@@ -73,21 +73,25 @@
 <script setup>
 import { ref } from "vue";
 import { useDisplay } from "vuetify";
-const showContent = ref(true); // Initial visibility state
-
-const toggleContent = () => {
-  showContent.value = !showContent.value; // Toggle visibility
-};
 
 const { smAndDown, mdAndUp, mdAndDown } = useDisplay();
 let phoneView = smAndDown;
 let tabletView = mdAndDown;
 let largeView = mdAndUp;
+const showContent = tabletView ? ref(false) : ref(true); // Initial visibility state
+
+const toggleContent = () => {
+  showContent.value = !showContent.value; // Toggle visibility
+};
 </script>
 
 <style lang="scss" scoped>
 /* Hamburger menu styles */
 .hamburger {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000 !important;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -100,7 +104,8 @@ let largeView = mdAndUp;
 .hamburger .line {
   width: 100%;
   height: 2px;
-  background-color: #000;
+  background-color: #ffff;
+  border-radius: 2px;
   transition: background-color 0.3s ease;
 }
 
