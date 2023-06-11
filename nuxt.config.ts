@@ -9,9 +9,9 @@ export default defineNuxtConfig({
   build: {
     transpile: ["vuetify"],
   },
-  // app: {
-  //   baseURL: "/", // baseURL: '/<repository>/'
-  // },
+  app: {
+    baseURL: "/nuxt-github-pages/", // baseURL: '/<repository>/'
+  },
   vite: {
     ssr: {
       noExternal: ["vuetify"],
