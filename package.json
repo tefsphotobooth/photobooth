@@ -6,15 +6,16 @@
     "build": "nuxt build",
     "generate": "nuxt generate",
     "start": "nuxt start",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d .output",
+    "predeploy": "npm run generate",
+    "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup",
     "postinstall": "nuxt build"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
     "@types/node": "^18",
     "gh-pages": "^5.0.0",
-    "nuxt": "^3.5.2"
+    "nuxt": "^3.5.2",
+    "push-dir": "^0.4.1"
   },
   "dependencies": {
     "@mdi/font": "^7.2.96",
