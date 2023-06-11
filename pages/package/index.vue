@@ -12,8 +12,9 @@
         <v-card
           class="mx-auto"
           data-aos="fade-down"
-          :data-aos-delay="index == 0 ? '0' : '300'"
+          :data-aos-delay="index % 2 == 0 ? '0' : '300'"
           data-aos-easing="ease-in-sine"
+          data-aos-offset="300"
         >
           <v-img :src="card.img" height="200px" cover></v-img>
 
@@ -70,30 +71,82 @@ export default {
         title: "Classic Photobooth",
         price: "₱3,500",
         description: [
-          " -2hrs unlimited Photobooth",
+          "-2hrs unlimited Photobooth",
           "-Free Photostandee/ Picture Frame",
+          "-Free use of Props",
           "-Free customized layout",
-          "-Green screen Technology Backdrop or Sequence backdrop",
+          "-Layout backdrop",
           "-Free coverage copy from our Page",
-          "Add ons: -Add 200 pesos for layout Tarpauline backdrop",
+          "Add ons:",
           "-Add 1000php per hour extension",
         ],
         show: false,
       },
       {
-        img: img2,
+        img: img1,
         title: "Magnetic Photobooth",
-        price: "₱5,000",
+        price: "₱4,500",
         description: [
           "-2Hrs unlimited Photobooth",
           "-Quality Full adhesive Magnet",
-          "-Free use of Props",
           "-Free Customize layout",
-          "-Green screen Technology backdrop pr Sequence Backdrop",
+          "-Layout backdrop",
           "-Free coverage copy from our Page",
           "Add ons:",
-          "-add 200 for layout tarpauline Backdrop",
           "-Add 1000 per hr extension",
+        ],
+        show: false,
+      },
+      {
+        img: img1,
+        title: "Polaroid Shot",
+        price: "₱4,500",
+        description: [
+          "-2Hrs unlimited shot",
+          "-Quality Full adhesive Magnet",
+          "-Free Customize layout",
+          "-Layout backdrop",
+          "-Free coverage copy from our Page",
+          "Add ons:",
+          "-Add 1000 per hr extension",
+        ],
+        show: false,
+      },
+      {
+        img: img1,
+        title: "Classic Strip with Dedication",
+        price: "₱3,800",
+        description: [
+          "-2Hrs unlimited shot",
+          "-Free Customize layout",
+          "-Layout backdrop",
+          "-Free coverage copy from our Page",
+        ],
+        show: false,
+      },
+      {
+        img: img1,
+        title: "Magnetic Strip with Dedication",
+        price: "₱4,500",
+        description: [
+          "-2Hrs unlimited shot",
+          "-Quality full adhesive Magnet",
+          "-Free Customize layout",
+          "-Layout backdrop",
+          "-Free coverage copy from our Page",
+        ],
+        show: false,
+      },
+      {
+        img: img1,
+        title: "2 in 1 Standee with Magnetic",
+        price: "₱4,000",
+        description: [
+          "-2Hrs unlimited shot",
+          "-Quality standee with magnet",
+          "-Free Customize layout",
+          "-Free use of props",
+          "-Free coverage copy from our Page",
         ],
         show: false,
       },

@@ -32,7 +32,7 @@ export default defineNuxtConfig({
       "nuxt-mail",
       {
         message: {
-          to: "ljota01@gmail.com",
+          to: "tefsphotobooth1013@gmail.com",
         },
         smtp: {
           host: "smtp-relay.sendinblue.com",

@@ -2,6 +2,21 @@
   <v-card class="mx-auto" max-width="80%">
     <v-img class="align-end text-white" :src="photoBoothImage" cover> </v-img>
 
+    <div class="text-center">
+      <v-dialog v-model="dialog" :scrim="false" persistent width="auto">
+        <v-card color="blue">
+          <v-card-text>
+            Sending email
+            <v-progress-linear
+              indeterminate
+              color="white"
+              class="mb-0"
+            ></v-progress-linear>
+          </v-card-text>
+        </v-card>
+      </v-dialog>
+    </div>
+
     <form @submit.prevent="submit" class="pa-6">
       <v-text-field
         v-model="name.value.value"
@@ -24,14 +39,22 @@
       ></v-text-field>
 
       <v-textarea
-        v-model="message"
+        v-model="message.value.value"
         auto-grow
         variant="filled"
         color="deep-purple"
         label="Message"
       ></v-textarea>
       <div class="text-center">
-        <v-btn class="me-4" type="submit" @click="sendEmail"> submit </v-btn>
+        <v-btn
+          class="me-4"
+          type="submit"
+          @click="sendEmail"
+          :disabled="dialog"
+          :loading="dialog"
+        >
+          submit
+        </v-btn>
 
         <v-btn @click="handleReset"> clear </v-btn>
       </div>
@@ -39,7 +62,9 @@
 
     <v-card-actions>
       <v-card-text class="text-left">
-        <h3>Contact No: 0916 646 0805</h3>
+        <h3>
+          Contact No: <span style="text-wrap: nowrap">0916 646 0805</span>
+        </h3>
       </v-card-text>
 
       <nuxt-link
@@ -61,14 +86,20 @@ import photoBoothImage from "@/assets/img/photo-booth.jpg";
 import { ref } from "vue";
 import { useField, useForm } from "vee-validate";
 const mail = useMail();
-let message = "";
-
+// let message = "";
+let dialog = false;
+let loading = false;
 useHead({
   titleTemplate: `Tef's Photobooth - Contact Us`,
 });
 const { handleSubmit, handleReset } = useForm({
   validationSchema: {
     name(value) {
+      if (value?.length >= 2) return true;
+
+      return "Name needs to be at least 2 characters.";
+    },
+    message(value) {
       if (value?.length >= 2) return true;
 
       return "Name needs to be at least 2 characters.";
@@ -98,6 +129,7 @@ const { handleSubmit, handleReset } = useForm({
 const name = useField("name");
 const phone = useField("phone");
 const email = useField("email");
+const message = useField("message");
 
 const items = ref(["Item 1", "Item 2", "Item 3", "Item 4"]);
 
@@ -112,15 +144,26 @@ let sendEmail = async () => {
     phone?.value?.value?.length > 9 &&
     /[0-9-]+/.test(phone?.value?.value)
   ) {
-    console.log("sending");
-    mail.send({
-      from: "gomo87376@gmail.com",
-      to: "ljota01@gmail.com",
-      subject: `${name.value.value} - ${email.value.value}`,
-      text: message,
-    });
+    try {
+      console.log("sending");
+      dialog = true;
+      mail.send({
+        from: email.value.value,
+        to: "tefsphotobooth1013@gmail.com",
+        subject: `${name.value.value} - ${email.value.value}`,
+        text: `Name: ${name.value.value} - Contact No.: ${phone.value.value}
+
+      ${message.value.value}`,
+      });
+      await setTimeout(() => {
+        alert("Email Sent", (dialog = false));
+        handleReset();
+      }, 3500);
+    } catch (err) {
+      console.log(err);
+    }
   } else {
-    console.log("error");
+    console.log("invalid fields");
   }
 };
 </script>
