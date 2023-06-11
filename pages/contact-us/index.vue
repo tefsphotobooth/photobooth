@@ -164,18 +164,23 @@ let sendEmail = async () => {
     try {
       console.log("sending");
       dialog = true;
-      mail.send({
-        from: email.value.value,
-        to: "tefsphotobooth1013@gmail.com",
-        subject: `${name.value.value} - ${email.value.value}`,
-        text: `Name: ${name.value.value} - Contact No.: ${phone.value.value}
+      mail
+        .send({
+          from: email.value.value,
+          subject: `${name.value.value} - ${email.value.value}`,
+          text: `Name: ${name.value.value} - Contact No.: ${phone.value.value}
 
       ${message.value.value}`,
-      });
-      await setTimeout(() => {
-        alert("Email Sent", (dialog = false));
-        handleReset();
-      }, 3500);
+        })
+        .then(async () => {
+          await setTimeout(() => {
+            alert("Email Sent", (dialog = false));
+            handleReset();
+          }, 3500);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     } catch (err) {
       console.log(err);
     }
@@ -201,7 +206,7 @@ h3 {
     font-size: 10px;
     flex-direction: column !important;
     text-align: center !important;
-    .v-card-text{
+    .v-card-text {
       padding: 1px;
     }
   }
