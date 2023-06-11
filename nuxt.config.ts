@@ -10,7 +10,7 @@ export default defineNuxtConfig({
     transpile: ["vuetify"],
   },
   app: {
-    baseURL: "/nuxt-github-pages/", // baseURL: '/<repository>/'
+    baseURL: "/tefs-photobooth/", // baseURL: '/<repository>/'
   },
   vite: {
     ssr: {
