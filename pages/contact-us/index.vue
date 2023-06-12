@@ -33,6 +33,35 @@
           </v-card-text>
         </v-card>
       </v-dialog>
+      <v-dialog v-model="errorDlg" width="800">
+        <v-card>
+          <v-card-title>
+            <span class="text-h5">Problem Occured</span>
+          </v-card-title>
+          <v-card-text>
+            Email was not sent! Please try contacting us on our
+            <nuxt-link
+              class="text-center"
+              to="https://www.facebook.com/profile.php?id=100064645585978"
+            >
+              Facebook Page
+            </nuxt-link>
+            or send us a message at 0916 646 0805.
+            <br />
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+
+            <v-btn
+              color="green-darken-1"
+              variant="text"
+              @click="errorDlg = false"
+            >
+              Close
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
     </div>
 
     <form @submit.prevent="submit" class="pa-6">
@@ -104,8 +133,9 @@ import { ref } from "vue";
 import { useField, useForm } from "vee-validate";
 const mail = useMail();
 // let message = "";
-let dialog = false;
+let dialog = ref(false);
 let loading = false;
+let errorDlg = ref(false);
 useHead({
   titleTemplate: `Tef's Photobooth - Contact Us`,
 });
@@ -161,29 +191,27 @@ let sendEmail = async () => {
     phone?.value?.value?.length > 9 &&
     /[0-9-]+/.test(phone?.value?.value)
   ) {
-    try {
-      console.log("sending");
-      dialog = true;
-      mail
-        .send({
-          from: email.value.value,
-          subject: `${name.value.value} - ${email.value.value}`,
-          text: `Name: ${name.value.value} - Contact No.: ${phone.value.value}
+    console.log("sending");
+    dialog.value = true;
+    mail
+      .send({
+        from: email.value.value,
+        subject: `${name.value.value} - ${email.value.value}`,
+        text: `Name: ${name.value.value} - Contact No.: ${phone.value.value}
 
       ${message.value.value}`,
-        })
-        .then(async () => {
-          await setTimeout(() => {
-            alert("Email Sent", (dialog = false));
-            handleReset();
-          }, 3500);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } catch (err) {
-      console.log(err);
-    }
+      })
+      .then(async () => {
+        await setTimeout(() => {
+          alert("Email Sent", (dialog.value = false));
+          handleReset();
+        }, 3500);
+      })
+      .catch((err) => {
+        console.log(err);
+        dialog.value = false;
+        errorDlg.value = true;
+      });
   } else {
     console.log("invalid fields");
   }
