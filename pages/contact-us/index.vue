@@ -207,10 +207,12 @@ let sendEmail = async () => {
           handleReset();
         }, 3500);
       })
-      .catch((err) => {
-        console.log(err);
-        dialog.value = false;
-        errorDlg.value = true;
+      .catch(async (err) => {
+        await setTimeout(() => {
+          console.log(err);
+          dialog.value = false;
+          errorDlg.value = true;
+        }, 3000);
       });
   } else {
     console.log("invalid fields");
