@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <div
-      class="my-8"
+      :class="phoneView ? 'my-4' : 'my-8'"
       data-aos="zoom-out-right"
       data-aos-duration="1500"
       style="max-width: 460px"
@@ -11,7 +11,13 @@
     </div>
 
     <v-row class="row-odd">
-      <v-col md="6" class="my-8" data-aos="fade-right">
+      <v-col
+        md="6"
+        sm="12"
+        cols="12"
+        :class="phoneView ? 'my-4' : 'my-8'"
+        data-aos="fade-right"
+      >
         <h2>Capture All the Fun and Memorable Moments</h2>
         <br />
         <h3>
@@ -24,7 +30,7 @@
           forever.
         </h3>
       </v-col>
-      <v-col md="6" class="my-8">
+      <v-col md="6" sm="12" cols="12" :class="phoneView ? 'my-4' : 'my-8'">
         <HomeCarousel>
           <div class="hand">
             <div
@@ -60,7 +66,13 @@
       </v-col>
     </v-row>
     <v-row class="row-even">
-      <v-col md="6" class="my-8" data-aos="fade-left" data-aos-offset="300">
+      <v-col
+        md="6"
+        sm="12"
+        :class="phoneView ? 'my-4' : 'my-8'"
+        data-aos="fade-left"
+        data-aos-offset="300"
+      >
         <h2>Endless Possibilities with Customizable Experiences</h2>
         <br />
         <h3>
@@ -74,7 +86,7 @@
           lasting impression on your guests.
         </h3>
       </v-col>
-      <v-col md="6" class="my-8">
+      <v-col md="6" sm="12" cols="12" :class="phoneView ? 'my-4' : 'my-8'">
         <HomeCarousel>
           <div class="hand">
             <div
@@ -110,7 +122,13 @@
       </v-col>
     </v-row>
     <v-row class="row-odd">
-      <v-col md="6" class="my-8" data-aos="fade-right" data-aos-offset="300">
+      <v-col
+        md="6"
+        sm="12"
+        :class="phoneView ? 'my-4' : 'my-8'"
+        data-aos="fade-right"
+        data-aos-offset="300"
+      >
         <h2>Professional Service and Hassle-Free Setup</h2>
         <br />
         <h3>
@@ -124,7 +142,7 @@
           and joy.
         </h3>
       </v-col>
-      <v-col md="6" class="my-8">
+      <v-col md="6" sm="12" cols="12" :class="phoneView ? 'my-4' : 'my-8'">
         <HomeCarousel>
           <div class="hand">
             <div
@@ -182,7 +200,7 @@ AOS.init();
 useHead({
   titleTemplate: `Tef's Photobooth - Home`,
 });
-const { smAndDown, mdAndUp, mdAndDown } = useDisplay();
+const { smAndDown, mdAndUp, mdAndDown, xs } = useDisplay();
 let phoneView = smAndDown;
 let tabletView = mdAndDown;
 let largeView = mdAndUp;
@@ -219,6 +237,17 @@ h3 {
 .hand {
   display: flex;
   justify-content: center;
+  @media (max-width: 960px) {
+    justify-content: space-around;
+  }
+  @media (max-width: 600px) {
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    div {
+      margin: 20px 0px;
+    }
+  }
 }
 .card.img :hover {
   cursor: pointer;
@@ -234,6 +263,9 @@ h3 {
   position: relative;
   margin: 0 10px;
   transform: translateY(0%);
+  @media (max-width: 960px) {
+    width: 80%;
+  }
 }
 
 .card img {
