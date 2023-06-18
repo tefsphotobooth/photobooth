@@ -2,17 +2,17 @@
   <v-container>
     <div
       class="my-8"
-      data-aos="zoom-out-down"
+      data-aos="zoom-out-right"
       data-aos-duration="1500"
       style="max-width: 460px"
     >
-      <h1 style="color: midnightblue">Welcome to Tef's Photobooth</h1>
-      <h2 style="color: midnightblue">Capturing Memories One Click at a Time!</h2>
+      <h1 class="title">Welcome to Tef's Photobooth</h1>
+      <h2 class="title">Make the Moment Shine!</h2>
     </div>
 
     <v-row class="row-odd">
-      <v-col md="6" class="my-8" data-aos="fade-in">
-        <h2>Unleash the Fun with Our Photobooths</h2>
+      <v-col md="6" class="my-8" data-aos="fade-right">
+        <h2>Capture All the Fun and Memorable Moments</h2>
         <br />
         <h3>
           Get ready to turn your event into an unforgettable experience with
@@ -27,21 +27,40 @@
       <v-col md="6" class="my-8">
         <HomeCarousel>
           <div class="hand">
-            <div class="card" data-aos="fade-left">
-              <img src="@/assets/img/sample1.jpg" alt="Image 1" />
-            </div>
-            <div class="card" data-aos="fade-left" data-aos-delay="150">
-              <img src="@/assets/img/sample2.jpg" alt="Image 2" />
-            </div>
-            <div class="card" data-aos="fade-left" data-aos-delay="300">
-              <img src="@/assets/img/sample3.jpg" alt="Image 3" />
+            <div
+              v-for="(img, index) in img.slice(0, 3)"
+              class="card img"
+              data-aos="fade-left"
+              :data-aos-delay="index == 1 ? 150 : index == 2 ? 300 : 0"
+            >
+              <img
+                :src="img.link"
+                :alt="`Image ${index}`"
+                @click="img.dialog = true"
+              />
+              <v-dialog v-model="img.dialog" width="85%">
+                <v-card>
+                  <v-icon
+                    icon="mdi-close"
+                    @click="img.dialog = false"
+                    color="white"
+                    style="position: fixed; right: 15px; z-index: 10"
+                  ></v-icon>
+
+                  <img
+                    :src="img.link"
+                    :alt="`Image ${index}`"
+                    style="width: 100%"
+                  />
+                </v-card>
+              </v-dialog>
             </div>
           </div>
         </HomeCarousel>
       </v-col>
     </v-row>
     <v-row class="row-even">
-      <v-col md="6" class="my-8" data-aos="fade-in" data-aos-offset="300">
+      <v-col md="6" class="my-8" data-aos="fade-left" data-aos-offset="300">
         <h2>Endless Possibilities with Customizable Experiences</h2>
         <br />
         <h3>
@@ -58,31 +77,40 @@
       <v-col md="6" class="my-8">
         <HomeCarousel>
           <div class="hand">
-            <div class="card" data-aos="fade-right" data-aos-offset="300">
-              <img src="@/assets/img/sample4.jpg" alt="Image 1" />
-            </div>
             <div
-              class="card"
+              v-for="(img, index) in img.slice(3, 6)"
+              class="card img"
               data-aos="fade-right"
-              data-aos-delay="150"
-              data-aos-offset="300"
+              :data-aos-delay="index == 1 ? 150 : index == 2 ? 300 : 0"
             >
-              <img src="@/assets/img/sample5.jpg" alt="Image 2" />
-            </div>
-            <div
-              class="card"
-              data-aos="fade-right"
-              data-aos-delay="300"
-              data-aos-offset="300"
-            >
-              <img src="@/assets/img/sample6.jpg" alt="Image 3" />
+              <img
+                :src="img.link"
+                :alt="`Image ${index}`"
+                @click="img.dialog = true"
+              />
+              <v-dialog v-model="img.dialog" width="85%">
+                <v-card>
+                  <v-icon
+                    icon="mdi-close"
+                    @click="img.dialog = false"
+                    color="white"
+                    style="position: fixed; right: 15px; z-index: 10"
+                  ></v-icon>
+
+                  <img
+                    :src="img.link"
+                    :alt="`Image ${index}`"
+                    style="width: 100%"
+                  />
+                </v-card>
+              </v-dialog>
             </div>
           </div>
         </HomeCarousel>
       </v-col>
     </v-row>
     <v-row class="row-odd">
-      <v-col md="6" class="my-8" data-aos="fade-in" data-aos-offset="300">
+      <v-col md="6" class="my-8" data-aos="fade-right" data-aos-offset="300">
         <h2>Professional Service and Hassle-Free Setup</h2>
         <br />
         <h3>
@@ -99,24 +127,33 @@
       <v-col md="6" class="my-8">
         <HomeCarousel>
           <div class="hand">
-            <div class="card" data-aos="fade-left" data-aos-offset="300">
-              <img src="@/assets/img/sample9.jpg" alt="Image 1" />
-            </div>
             <div
-              class="card"
+              v-for="(img, index) in img.slice(6, 9)"
+              class="card img"
               data-aos="fade-left"
-              data-aos-delay="150"
-              data-aos-offset="300"
+              :data-aos-delay="index == 1 ? 150 : index == 2 ? 300 : 0"
             >
-              <img src="@/assets/img/sample8.jpg" alt="Image 2" />
-            </div>
-            <div
-              class="card"
-              data-aos="fade-left"
-              data-aos-delay="300"
-              data-aos-offset="300"
-            >
-              <img src="@/assets/img/sample7.jpg" alt="Image 3" />
+              <img
+                :src="img.link"
+                :alt="`Image ${index}`"
+                @click="img.dialog = true"
+              />
+              <v-dialog v-model="img.dialog" width="85%">
+                <v-card>
+                  <v-icon
+                    icon="mdi-close"
+                    @click="img.dialog = false"
+                    color="white"
+                    style="position: fixed; right: 15px; z-index: 10"
+                  ></v-icon>
+
+                  <img
+                    :src="img.link"
+                    :alt="`Image ${index}`"
+                    style="width: 100%"
+                  />
+                </v-card>
+              </v-dialog>
             </div>
           </div>
         </HomeCarousel>
@@ -129,7 +166,17 @@
 <script setup>
 import { useDisplay } from "vuetify";
 import AOS from "aos";
-import "aos/dist/aos.css"; // You can also use <link> for styles
+import "aos/dist/aos.css";
+import sample1 from "@/assets/img/sample1.jpg";
+import sample2 from "@/assets/img/sample2.jpg";
+import sample3 from "@/assets/img/sample3.jpg";
+import sample4 from "@/assets/img/sample4.jpg";
+import sample5 from "@/assets/img/sample5.jpg";
+import sample6 from "@/assets/img/sample6.jpg";
+import sample7 from "@/assets/img/sample7.jpg";
+import sample8 from "@/assets/img/sample8.jpg";
+import sample9 from "@/assets/img/sample9.jpg";
+import { ref } from "vue";
 // ..
 AOS.init();
 useHead({
@@ -139,9 +186,25 @@ const { smAndDown, mdAndUp, mdAndDown } = useDisplay();
 let phoneView = smAndDown;
 let tabletView = mdAndDown;
 let largeView = mdAndUp;
+
+let img = ref([
+  { link: sample1, dialog: ref(false) },
+  { link: sample2, dialog: ref(false) },
+  { link: sample3, dialog: ref(false) },
+  { link: sample4, dialog: ref(false) },
+  { link: sample5, dialog: ref(false) },
+  { link: sample6, dialog: ref(false) },
+  { link: sample7, dialog: ref(false) },
+  { link: sample8, dialog: ref(false) },
+  { link: sample9, dialog: ref(false) },
+]);
 </script>
 
 <style lang="scss" scoped>
+.title {
+  color: white;
+  text-shadow: 0px 0px 15px #addbfe, 0 0 0.2em #addbfe, 0 0 6em #addbfe;
+}
 .row-even {
   flex-direction: row-reverse;
 }
@@ -156,6 +219,9 @@ h3 {
 .hand {
   display: flex;
   justify-content: center;
+}
+.card.img :hover {
+  cursor: pointer;
 }
 
 .card {

@@ -1,5 +1,5 @@
 <template>
-  <v-card class="mx-auto" max-width="80%">
+  <v-card class="mx-auto" max-width="80%" data-aos="fade-in"  data-aos-duration="1500">
     <v-card-actions>
       <v-card-text class="text-left">
         <h3>
@@ -129,8 +129,11 @@
 
 <script setup>
 import photoBoothImage from "@/assets/img/photo-booth.jpg";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import { ref } from "vue";
 import { useField, useForm } from "vee-validate";
+AOS.init();
 const mail = useMail();
 // let message = "";
 let dialog = ref(false);

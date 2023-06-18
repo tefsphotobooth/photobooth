@@ -20,18 +20,24 @@
               prepend-icon="mdi-home-outline"
               title="Home"
               value="home"
+              data-aos="fade-right"
+              data-aos-delay="0"
             ></v-list-item> </nuxt-link
           ><nuxt-link to="/package">
             <v-list-item
               prepend-icon="mdi-package-variant-closed"
               title="Package"
               value="packages"
+              data-aos="fade-right"
+              data-aos-delay="150"
             ></v-list-item></nuxt-link
           ><nuxt-link to="/contact-us">
             <v-list-item
               prepend-icon="mdi-email-fast-outline"
               title="Contact Us"
               value="contact"
+              data-aos="fade-right"
+              data-aos-delay="300"
             ></v-list-item
           ></nuxt-link>
         </v-list>
@@ -73,7 +79,9 @@
 <script setup>
 import { ref } from "vue";
 import { useDisplay } from "vuetify";
-
+import AOS from "aos";
+import "aos/dist/aos.css";
+AOS.init();
 const { smAndDown, mdAndUp, mdAndDown } = useDisplay();
 let phoneView = smAndDown;
 let tabletView = mdAndDown;
